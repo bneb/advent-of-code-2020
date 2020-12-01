@@ -27,7 +27,7 @@ Run the code with the input file to produce the solution(s) for day D as follows
 python3 day0D.py -f=day0D_input.txt 
 ```
 
-In the case of day 1, my full result for part 1 would be:
+In the case of day 1, my result for part 1 would look like:
 ```
 $ python3 day01.py -f=day01_input.txt 
 Day 01 solution: 73371
