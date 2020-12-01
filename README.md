@@ -5,7 +5,8 @@
 ## Code Organization
 Witin the repo, there is a directory for each day of the advent calendar.
 
-day01 has day01.py and day01_input.txt, day02 is structured similarly and so on.
+- Day 1 has directory `day01` containing `day01.py` and `day01_input.txt`.
+- Day 2 is structured similarly and so on for the rest of the days.
 
 On days where the puzzle is more difficult, there will be test files as well.
 
