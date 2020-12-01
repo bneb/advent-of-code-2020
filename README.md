@@ -19,7 +19,7 @@ Create the boilerplate for day D by running the following command:
 ```
 python3 new_day.py -d=D
 ```
-This creates a directory day02, and files day02.py and day02_input.txt per the code organization section.
+This creates a directory `day0D`, and files `day0D.py` and `day0D_input.txt` per the code organization section.
 
 ### Produce a Solution
 Run the code with the input file to produce the solution(s) for day D as follows:
