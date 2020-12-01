@@ -35,5 +35,4 @@ Day 01 solution: 73371
 
 ---
 
-## Thanks
-Feel free to contribute or reach out.
+## Cheers
