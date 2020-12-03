@@ -27,9 +27,7 @@ from pathlib import PurePath
 def day(data):
     \'''The docstring goes here.
     \'''
-    for combo in combinations(data, n):
-        if sum(combo) == target_number:
-            return reduce(lambda x, y: x*y, combo)
+    pass
 
 
 if __name__ == '__main__':
@@ -38,7 +36,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     with open(args.f, 'r') as f:
-        data = [int(line.strip()) for line in f.readlines()]
+        data = [line.strip() for line in f.readlines()]
 
     solution = day(data)
 

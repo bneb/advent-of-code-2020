@@ -105,4 +105,4 @@ if __name__ == '__main__':
 
     solution = day(data, part)
 
-    print("Day 02 Part {} solution: {}".format(solution, part))
+    print("Day 02 Part {} solution: {}".format(part, solution))
