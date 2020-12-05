@@ -1,11 +1,19 @@
-'''Create a new day directory and files for Advent of Code 2020.'''
+'''Create a new day directory and files for Advent of Code 2020.
+
+Usage:
+    $ python3 new_day.py [-d=<puzzle day>]
+'''
 
 from argparse import ArgumentParser
 from pathlib import Path
+import os
 
 if __name__ == '__main__':
+    files = os.listdir(os.path.dirname(os.path.realpath(__file__)))
+    day = sum([1 for f in files if f[:3] == 'day']) + 1
+
     parser = ArgumentParser(description='Create daily challenge boilerplate.')
-    parser.add_argument('-d', type=int, help='the day of the advent calendar')
+    parser.add_argument('-d', type=int, default=day, help='the puzzle day')
     args = parser.parse_args()
     day = args.d
     
