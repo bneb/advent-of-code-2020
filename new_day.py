@@ -9,7 +9,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     day = args.d
     
-    path = Path('/Users/Kevin/Projects/advent-of-code-2020/day{:0>2}'.format(day))
+    path = Path('./day{:0>2}'.format(day))
     path.mkdir()
 
 
@@ -33,6 +33,7 @@ def day(data):
 if __name__ == '__main__':
     parser = ArgumentParser(description=day.__doc__)
     parser.add_argument('-f', type=PurePath, help='the input file')
+    parser.add_argument('-p', type=int, default=1, help='which part to solve')
     args = parser.parse_args()
 
     with open(args.f, 'r') as f:
