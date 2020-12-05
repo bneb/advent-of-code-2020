@@ -10,7 +10,7 @@ from functools import reduce
 from itertools import combinations
 from pathlib import PurePath
 
-def day(data, n, target_number):
+def main(data, n, target_number):
     '''With a list of numbers, how many numbers to use (n), and a target sum:
     return the product of a combination of n numbers that sum to the target.
     '''
@@ -20,7 +20,7 @@ def day(data, n, target_number):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description=day.__doc__)
+    parser = ArgumentParser(description=main.__doc__)
     parser.add_argument('-f', type=PurePath, help='the input file')
     parser.add_argument('-n', type=int, default=2, help='use this many numbers')
     parser.add_argument('-t', type=int, default=2020, help='the target number')
@@ -29,8 +29,5 @@ if __name__ == '__main__':
     with open(args.f, 'r') as f:
         data = [int(line.strip()) for line in f.readlines()]
 
-    n = args.n
-    solution = day(data, n, args.t)
-
+    solution = main(data, args.n, args.t)
     print("Day 01 solution: {}".format(solution))
-

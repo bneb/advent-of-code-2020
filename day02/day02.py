@@ -8,7 +8,7 @@ from collections import Counter
 from pathlib import PurePath
 import re
 
-def day(data, part):
+def main(data, part):
     '''Given a list of (rule, password) pairs, return the count of passwords
     that satisfy their respective rules.
 
@@ -35,30 +35,27 @@ def day(data, part):
     count = 0
 
     for pair_str in data:
+
+        arg1, arg2, character, password = parse_pair(pair_str)
+
         if part == 1:
-            lower_limit, upper_limit, character, password = parse_pair(pair_str)
-
-            if part1_validation(lower_limit, upper_limit, character, password):
-                count += 1
+            lower_limit = int(arg1)
+            upper_limit = int(arg2)
         elif part == 2:
-            lower_limit, upper_limit, character, password = parse_pair(pair_str)
-
-            if part2_validation(lower_limit, upper_limit, character, password):
-                count += 1
+            # for part 2 the character should occur only once
+            lower_limit = 1
+            upper_limit = 1
+            # we only care to examine two indices in the string
+            index1 = convert_to_index(arg1)
+            index2 = convert_to_index(arg2)
+            password = password[index1] + password[index2]
         else:
             raise Exception("ohno: bad part 🤮")
 
+        if validate(lower_limit, upper_limit, character, password):
+            count += 1
+
     return count
-
-
-def part1_validation(lower_limit_str, upper_limit_str, character, password):
-    counter = Counter(password)
-
-    # default the count of the rule character to 0
-    character_count = counter.get(character, 0)
-
-    # convert limit strs to ints
-    return int(lower_limit_str) <= character_count <= int(upper_limit_str)
 
 
 def convert_to_index(index_str):
@@ -66,17 +63,11 @@ def convert_to_index(index_str):
     return int(index_str)-1
 
 
-def part2_validation(lower_index_str, upper_index_str, character, password):
-    # create a counter of characters at either index
-    lower_index = convert_to_index(lower_index_str)
-    upper_index = convert_to_index(upper_index_str)
-    counter = Counter(password[lower_index] + password[upper_index])
+def validate(lower_limit, upper_limit, character, password):
+    counter = Counter(password)
+    character_count = counter.get(character, 0) # default to 0
 
-    # default the count of the rule character to 0
-    character_count = counter.get(character, 0)
-
-    # the character should only appear once at either index
-    return character_count == 1
+    return lower_limit <= character_count <= upper_limit
 
 
 def parse_pair(pair):
@@ -87,22 +78,19 @@ def parse_pair(pair):
     Example:
       "1-3 a: abcde" --> ["1", "3", "a", "abcde"]
     '''
-    # The split pattern is any non-alphanumeric substring
+    # The split pattern is a greedy non-alphanumeric substring
     return re.split("[^A-Za-z0-9]+", pair)
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description=day.__doc__)
+    parser = ArgumentParser(description=main.__doc__)
     parser.add_argument('-f', type=PurePath, help='the input file')
     parser.add_argument('-p', type=int, default=1, help='part 1 or 2')
     args = parser.parse_args()
 
-    part = args.p
-    file_path = args.f
-
-    with open(file_path, 'r') as f:
+    with open(args.f, 'r') as f:
         data = [line.strip() for line in f.readlines()]
 
-    solution = day(data, part)
-
+    part = args.p
+    solution = main(data, part)
     print("Day 02 Part {} solution: {}".format(part, solution))

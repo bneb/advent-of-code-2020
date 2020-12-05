@@ -20,7 +20,7 @@ Example:
 from argparse import ArgumentParser
 from pathlib import PurePath
 
-def day(grid, rise, run):
+def main(grid, rise, run):
     '''Traverse a grid of snow '.' and trees '#' and return the number of
     encountered trees traversing from the top left with a given slope.
     '''
@@ -39,26 +39,23 @@ def day(grid, rise, run):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description=day.__doc__)
+    parser = ArgumentParser(description=main.__doc__)
     parser.add_argument('-f', type=PurePath, help='the input file')
-    parser.add_argument('-s', type=str, default="1/3", help='slope as rise/run')
     parser.add_argument('-p', type=int, default=1, help='part 1 or 2')
     args = parser.parse_args()
 
     part = args.p
 
-    rise, run = args.s.split('/')
-
     with open(args.f, 'r') as f:
         data = [line.strip() for line in f.readlines()]
 
-    solution = day(data, int(rise), int(run))
+    solution = main(data, 1, 3)
 
     if part == 1:
         pass
     elif part == 2:
         for rise, run in [(1, 1), (1, 5), (1, 7), (2, 1)]:
-            solution *= day(data, rise, run)
+            solution *= main(data, rise, run)
     else:
         raise Exception("ohno, bad part 🤮")
 
