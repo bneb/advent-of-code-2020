@@ -14,10 +14,11 @@ if __name__ == '__main__':
     directory = os.path.dirname(os.path.realpath(__file__))
     path_pattern = os.path.join(directory, 'day*')
 
-    day = 0
+    day = 1
     for i, f in enumerate(sorted(glob(path_pattern))):
-        day = i+1
-        if int(f[-2:]) != i+1:
+        if int(f[-2:]) == i+1:
+            day += 1
+        else:
             break
 
     # Default to the latest day that has yet to be done
