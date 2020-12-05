@@ -67,13 +67,13 @@ def get_seat_id(seat):
     return 8*row+col
 
 
-def bin_cast(boarding_pass):
+def bin_cast(pass_str):
     '''Given a boarding pass string, return the row and col as ints
 
-    Convert the strs to binary ints: first 7 are the row, last 3 are the column.
+    Parse binary ints from pass_str: first 7 are the row, last 3 are the column.
     '''
-    row = int(boarding_pass[:7].replace('B', '1').replace('F', '0'), 2)
-    col = int(boarding_pass[7:].replace('R', '1').replace('L', '0'), 2)
+    row = int(pass_str[:7].replace('B', '1').replace('F', '0'), 2)
+    col = int(pass_str[7:].replace('R', '1').replace('L', '0'), 2)
 
     return row, col
 
