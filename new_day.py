@@ -42,24 +42,33 @@ The prompt is ...
 from argparse import ArgumentParser
 from pathlib import PurePath
 
-def day(data):
+def main(file_path):
     \'''The docstring goes here.
     \'''
-    pass
+    with open(file_path, 'r') as f:
+        data = [line.strip() for line in f.readlines()]
+
+    solution = part1()
+    print("Day {day:0>2} Part 1 solution: {{}}".format(solution))
+
+    solution = part2()
+    print("Day {day:0>2} Part 2 solution: {{}}".format(solution))
+
+
+def part1(data):
+    return None
+
+
+def part2(data):
+    return None
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description=day.__doc__)
+    parser = ArgumentParser(description=main.__doc__)
     parser.add_argument('-f', type=PurePath, help='the input file')
-    parser.add_argument('-p', type=int, default=1, help='which part to solve')
     args = parser.parse_args()
 
-    with open(args.f, 'r') as f:
-        data = [line.strip() for line in f.readlines()]
-
-    solution = day(data)
-
-    print("Day {day:0>2} solution: {{}}".format(solution))
+    main(args.f)
 '''.format(day=day)
         )
 
