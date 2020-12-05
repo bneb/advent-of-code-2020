@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z "$1" ]
+  then
+    python3 new_day.py
+  else
+    python3 new_day.py -d=$1
+fi
+
