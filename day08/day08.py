@@ -13,8 +13,6 @@ Process the imput according to some goal and return the accumulator
 from argparse import ArgumentParser
 from pathlib import PurePath
 import re
-from functools import reduce
-from itertools import combinations
 
 def main(file_path):
     '''Parse input, compute solutions, and print them.
@@ -56,7 +54,7 @@ def part1(data):
 
 
 def part2(data):
-    '''Try to avoid an infinite loop by swapping jmp for nop or visa versa once.
+    '''Swap jmp for nop or visa versa once to try to surpass the length of instructions.
     '''
     for i, d in enumerate(data):
         op, val = d
@@ -67,7 +65,7 @@ def part2(data):
         elif op == 'jmp':
             new_data = data[:i] + [('nop', val)] + data[i+1:]
         else:
-            # exit if no swap occurs since we must swap once
+            # skip to the next iteration if no swap occurs
             continue
 
         # evaluate in the same fashion as part1 
@@ -75,12 +73,10 @@ def part2(data):
 
         # if we've exceeded the number of instructions, we made it!
         if i >= len(data):
-            return i, acc
+            return (i, acc)
 
     raise Exception("ohfuck 🤮")
 
-        
-    
 
 if __name__ == '__main__':
     parser = ArgumentParser(description=main.__doc__)
