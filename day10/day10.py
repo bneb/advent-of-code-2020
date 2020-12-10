@@ -6,7 +6,6 @@ The prompt is ...
 from argparse import ArgumentParser
 from pathlib import PurePath
 from collections import Counter
-import time
 
 def main(file_path):
     '''The docstring goes here.

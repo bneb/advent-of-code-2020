@@ -5,7 +5,6 @@ The prompt is blah blah blah honestly who cares.
 
 from argparse import ArgumentParser
 from pathlib import PurePath
-import re
 
 def main(file_path):
     '''Given the input filepath, parse the input and print the solutions.
